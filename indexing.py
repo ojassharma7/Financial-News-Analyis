@@ -6,8 +6,8 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['financial_news']
 collection = db['articles']
 
-# Connect to Elasticsearch
-es = Elasticsearch([{'host': 'localhost', 'port': 9200}])
+# Connect to Elasticsearch (add scheme='http')
+es = Elasticsearch([{'host': 'localhost', 'port': 9200, 'scheme': 'http'}])
 
 def index_articles():
     articles = collection.find({})
@@ -24,3 +24,4 @@ def index_articles():
 
 if __name__ == "__main__":
     index_articles()
+
