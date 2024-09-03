@@ -1,4 +1,4 @@
-ffrom flask import Flask, render_template, request
+from flask import Flask, render_template, request
 from summarization import generate_summary
 
 app = Flask(__name__)
