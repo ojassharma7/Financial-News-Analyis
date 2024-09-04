@@ -48,3 +48,21 @@ if __name__ == "__main__":
     query = "stock market"
     summary = generate_summary(query)
     print("Summary:", summary)
+    
+    
+def generate_summary(query):
+    try:
+        # Retrieve articles
+        articles = retrieve_articles(query)
+        if not articles:
+            return "No relevant articles found."
+
+        # Combine articles into one large text block
+        combined_text = " ".join(articles)
+
+        # Generate summary
+        summary = summarize(combined_text)
+        return summary
+    except Exception as e:
+        return f"An error occurred during summarization: {str(e)}"
+

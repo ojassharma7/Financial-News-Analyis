@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-from summarization import generate_summary
 
 app = Flask(__name__)
 
@@ -9,10 +8,20 @@ def home():
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
-    query = request.form['query']
-    summary = generate_summary(query)
-    return render_template('result.html', summary=summary)
+    try:
+        query = request.form['query']
+        if not query.strip():
+            return render_template('index.html', error="Query cannot be empty")
+
+        summary = generate_summary(query)
+        if summary:
+            return render_template('result.html', summary=summary)
+        else:
+            return render_template('index.html', error="No relevant articles found")
+    except Exception as e:
+        return render_template('index.html', error=f"An error occurred: {str(e)}")
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
