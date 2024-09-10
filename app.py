@@ -1,6 +1,20 @@
 from flask import Flask, render_template, request
+from summarization import generate_summary
+from bs4 import BeautifulSoup
+import requests
 
 app = Flask(__name__)
+
+def scrape_article(url):
+    """Scrape article content from a URL."""
+    try:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        paragraphs = soup.find_all('p')
+        content = ' '.join([para.get_text() for para in paragraphs])
+        return content
+    except Exception as e:
+        return None
 
 @app.route('/')
 def home():
@@ -8,21 +22,39 @@ def home():
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
-    try:
-        query = request.form['query']
-        if not query.strip():
-            return render_template('index.html', error="Query cannot be empty")
+    query = request.form.get('query')
+    url = request.form.get('url')
 
-        summary = generate_summary(query)  # Replace this with actual summary logic
-        if summary:
+    if url:
+        # Scrape and summarize article from URL
+        content = scrape_article(url)
+        if content:
+            summary = generate_summary(content)
             return render_template('result.html', summary=summary)
         else:
-            return render_template('index.html', error="No relevant articles found")
-    except Exception as e:
-        return render_template('index.html', error=f"An error occurred: {str(e)}")
+            return render_template('index.html', error="Could not retrieve article from URL.")
+    elif query:
+        # Summarize based on query
+        summary = generate_summary(query)
+        return render_template('result.html', summary=summary)
+    else:
+        return render_template('index.html', error="Please enter either a query or a URL.")
 
 if __name__ == '__main__':
     app.run(debug=True)
 
 
+from flask import Flask, render_template, request
+from scheduler import start_scheduler
 
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+# Your existing routes here...
+
+if __name__ == '__main__':
+    start_scheduler()
+    app.run(debug=True)

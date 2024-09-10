@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial News Summarizer</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1 class="text-center">Financial News Summarizer</h1>
-        <form action="/summarize" method="POST">
-            <div class="form-group">
-                <label for="query">Enter Your Query:</label>
-                <input type="text" class="form-control" id="query" name="query" required>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Summarize</button>
-        </form>
+<form action="/summarize" method="POST">
+    <div class="form-group">
+        <label for="query">Enter Your Query:</label>
+        <input type="text" class="form-control" id="query" name="query">
     </div>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <div class="form-group">
+        <label for="url">or Enter a URL:</label>
+        <input type="url" class="form-control" id="url" name="url">
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Summarize</button>
+</form>
+

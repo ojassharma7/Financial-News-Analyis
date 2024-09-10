@@ -10,8 +10,9 @@ COPY . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Make port 80 available to the world outside this container
+# Expose port 80 to the outside world
 EXPOSE 80
 
 # Run the application
 CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:80", "app:app"]
+
