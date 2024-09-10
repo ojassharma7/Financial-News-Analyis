@@ -14,7 +14,8 @@ def summarize():
             return render_template('index.html', error="Query cannot be empty")
 
         summary = generate_summary(query)
-        if summary:
+        if summary:docker build -t my-flask-app .
+
             return render_template('result.html', summary=summary)
         else:
             return render_template('index.html', error="No relevant articles found")
