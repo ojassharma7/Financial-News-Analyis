@@ -17,7 +17,7 @@ def scrape_article(url):
     except Exception as e:
         return None
 
-@app.route('/'
+@app.route('/')
 def home():
     return render_template('index.html')
 
