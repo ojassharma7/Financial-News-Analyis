@@ -24,4 +24,4 @@ def start_scheduler():
     scheduler.start()
 
 if __name__ == "__main__":
-    start_scheduler(
+    start_scheduler()
