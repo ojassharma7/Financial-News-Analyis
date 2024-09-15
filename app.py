@@ -15,7 +15,7 @@ def scrape_article(url):
         content = ' '.join([para.get_text() for para in paragraphs])
         return content
     except Exception as e:
-        return 
+        return None
 
 @app.route('/')
 def home():
