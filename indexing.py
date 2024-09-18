@@ -23,5 +23,5 @@ def index_articles():
         print(f"Indexed article: {article['_id']}")
 
 if __name__ == "__main__":
-    index_articles()
+    index_articles(
 
