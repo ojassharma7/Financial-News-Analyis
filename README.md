@@ -31,3 +31,13 @@ requests (pip install requests)
 beautifulsoup4 (pip install beautifulsoup4)
 transformers for NLP models (pip install transformers)
 Gunicorn for running the application in production (pip install gunicorn)
+
+Using the Application
+Home Page: You’ll be greeted with a form where you can input either:
+
+A query (text-based summarization).
+A URL (scrapes and summarizes an article).
+Preferences (stored in session).
+Submit the Form: After submitting the form, the summarized result will be displayed on the result page.
+
+Error Handling: If the query is empty or the URL cannot be fetched, a relevant error message will be shown.
