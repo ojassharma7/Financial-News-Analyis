@@ -1,4 +1,4 @@
-Financial News Summarization App
+# Financial News Summarization App
 This Flask web application summarizes financial news articles based on user input. Users can either provide a query or a URL of a news article to get a concise summary of the content. The app leverages text scraping and natural language processing (NLP) to generate the summaries.
 
 Table of Contents
